@@ -1,0 +1,11 @@
+/vendor
+/node_modules
+/.env
+/.env.local
+/.env.*.local
+/.claude
+*.log
+*.sqlite
+.htaccess
+composer.lock
+CLAUDE.md
