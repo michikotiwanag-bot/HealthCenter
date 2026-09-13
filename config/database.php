@@ -27,6 +27,7 @@ class Database
                 $dbUrl = self::env('DATABASE_URL');
 
                 if ($dbUrl !== null) {
+                    $dbUrl = preg_replace('/\?.*$/', '', (string)$dbUrl) ?: (string)$dbUrl;
                     $url = parse_url($dbUrl);
                     $dbname = ltrim((string)($url['path'] ?? ''), '/');
                     $driver = str_starts_with($dbUrl, 'pgsql://') || str_starts_with($dbUrl, 'postgresql://') ? 'pgsql' : 'mysql';
@@ -44,6 +45,7 @@ class Database
                     $dbUrlFromParts = self::env('DATABASE_URL');
                     $driver = 'mysql';
                     if ($dbUrlFromParts !== null) {
+                        $dbUrlFromParts = preg_replace('/\?.*$/', '', (string)$dbUrlFromParts) ?: (string)$dbUrlFromParts;
                         $url = parse_url($dbUrlFromParts);
                         $driver = str_starts_with($dbUrlFromParts, 'pgsql://') || str_starts_with($dbUrlFromParts, 'postgresql://') ? 'pgsql' : 'mysql';
                     }
